@@ -1,7 +1,14 @@
-const express = require(); 
+const { Client } = require('pg');
 
-const app = express(); 
+const client = new Client({
+    user: "posgres", 
+    password: "5435", 
+    host: "localhost", 
+    port: 5434, 
+    database: "dvdrental"
+})
 
-PORT = process.env.PORT || 5000; 
-
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`)); 
+client.connect()
+    .then(() => console.log('Connected successfully'))
+    .catch(e => console.log)
+    .finally(() => client.end())
